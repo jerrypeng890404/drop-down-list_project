@@ -1,6 +1,5 @@
 package com.example.dropdownlist_project.controller;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,29 +45,14 @@ public class CommonController {
 	}
 	
 	//増加機能
-	@PostMapping("createCommonList")
+	@PostMapping(value = "createCommonList")
 	public CommonRes createCommonList(@RequestBody CommonReq req) {
-		List<CommonList> result = new ArrayList<>();
-		try {
-			if(!StringUtils.hasText(req.getLabel())) {
-				return new CommonRes(
-						CommonRtnCode.DATA_REQUIRED.getCode(),
-						CommonRtnCode.DATA_REQUIRED.getMessage()
-						);
-			}
-			commonService.createCommonList(req);
-			result = commonService.getCommonList();
-		} catch (Exception e) {
-			return new CommonRes(
-					CommonRtnCode.FAILED.getCode(),
-					CommonRtnCode.FAILED.getMessage()
-					);
-		}
+		CommonList commonList = new CommonList();
+		commonList = commonService.createCommonList(req);
 		return new CommonRes(
 				CommonRtnCode.SUCCESSFUL.getCode(),
 				CommonRtnCode.SUCCESSFUL.getMessage(),
-				result
-				);
+				commonList);
 	}
 	
 	//状態の変更機能

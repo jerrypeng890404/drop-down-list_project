@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.example.dropdownlist_project.vo.CommonReq;
+
 @Entity
 @Table(name = "common_list")
 public class CommonList {
@@ -15,7 +17,7 @@ public class CommonList {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@Column(name = "group_id")
 	private String groupId;
@@ -46,37 +48,23 @@ public class CommonList {
 
 	public CommonList() {
 	}
-
-	public CommonList(String groupId, String groupName, String labelId, String label, boolean status,
-			String creator, LocalDateTime createDate) {
-		this.groupId = groupId;
-		this.groupName = groupName;
-		this.labelId = labelId;
-		this.label = label;
-		this.status = status;
-		this.creator = creator;
-		this.createDate = createDate;
+	
+	public CommonList(CommonReq req) {
+		this.id = req.getId();
+		this.groupId = req.getGroupId();
+		this.groupName = req.getGroupName();
+		this.labelId = req.getLabelId();
+		this.label = req.getLabel();
+		this.status = false;
+		this.creator = req.getCreator();
+		this.createDate = LocalDateTime.now();
 	}
 	
-	public CommonList(int id, String groupId, String groupName, String labelId, String label, boolean status,
-			String creator, LocalDateTime createDate, String modifier, LocalDateTime modifyDate) {
-		this.id = id;
-		this.groupId = groupId;
-		this.groupName = groupName;
-		this.labelId = labelId;
-		this.label = label;
-		this.status = status;
-		this.creator = creator;
-		this.createDate = createDate;
-		this.modifier = modifier;
-		this.modifyDate = modifyDate;
-	}
-
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

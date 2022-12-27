@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.example.dropdownlist_project.entity.CommonList;
 
+@Repository
 public interface CommonDao extends JpaRepository<CommonList, Integer> {
 
 //	@Modifying                                     //パラメータによる

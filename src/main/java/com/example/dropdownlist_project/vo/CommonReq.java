@@ -30,14 +30,6 @@ public class CommonReq {
 
 	public CommonReq() {
 	}
-
-	public CommonReq(String groupId, String groupName, String labelId, String label, String creator) {
-		this.groupId = groupId;
-		this.groupName = groupName;
-		this.labelId = labelId;
-		this.label = label;
-		this.creator = creator;
-	}
 	
 	public Integer getId() {
 		return id;

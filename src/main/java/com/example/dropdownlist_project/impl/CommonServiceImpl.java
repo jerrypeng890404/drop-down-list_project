@@ -62,10 +62,10 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	@Override
-	public void createCommonList(CommonReq req){
-		CommonList toCreateCommon = new CommonList(req.getGroupId(), req.getGroupName(), req.getLabelId(), req.getLabel(),
-				false, req.getCreator(), LocalDateTime.now());
+	public CommonList createCommonList(CommonReq req){
+		CommonList toCreateCommon = new CommonList(req);
 		commonDao.save(toCreateCommon);
+		return toCreateCommon;
 	}
 
 	@Override

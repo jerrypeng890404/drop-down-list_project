@@ -16,7 +16,7 @@ public interface CommonService {
 	public Map<Map<String, String>, Set<String>> getGroupNameAndLabelIdAndLabelByGroupId(CommonReq req) throws Exception;
 	
 	//増加機能
-	public void createCommonList(CommonReq req);
+	public CommonList createCommonList(CommonReq req);
 	
 	//状態の変更機能
 	public void inactiveCommonList(CommonReq req) throws Exception;

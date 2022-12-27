@@ -17,6 +17,8 @@ public class CommonRes {
 	private List<CommonList> commonList;
 
 	private Map<Map<String, String>, Set<String>> commonMap;
+	
+	private CommonList commonList2;
 
 	public CommonRes() {
 	}
@@ -24,6 +26,12 @@ public class CommonRes {
 	public CommonRes(String statusCode, String message) {
 		this.statusCode = statusCode;
 		this.message = message;
+	}
+	
+	public CommonRes(String statusCode, String message, CommonList commonList2) {
+		this.statusCode = statusCode;
+		this.message = message;
+		this.commonList2 = commonList2;
 	}
 
 	public CommonRes(String statusCode, String message, List<CommonList> commonList) {
@@ -68,6 +76,14 @@ public class CommonRes {
 
 	public void setCommonMap(Map<Map<String, String>, Set<String>> commonMap) {
 		this.commonMap = commonMap;
+	}
+
+	public CommonList getCommonList2() {
+		return commonList2;
+	}
+
+	public void setCommonList2(CommonList commonList2) {
+		this.commonList2 = commonList2;
 	}
 
 }
