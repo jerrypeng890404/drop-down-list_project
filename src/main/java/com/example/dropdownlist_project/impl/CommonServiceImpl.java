@@ -1,12 +1,9 @@
 package com.example.dropdownlist_project.impl;
 
-import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,18 +19,6 @@ public class CommonServiceImpl implements CommonService {
 
 	@Autowired
 	private CommonDao commonDao;
-
-	@Override
-	public List<CommonList> getCommonList() throws Exception {
-		List<CommonList> result = new LinkedList<>();
-		Set<CommonList> commonSet = new LinkedHashSet<>();
-		List<CommonList> commonList = commonDao.findAll();
-		commonSet.addAll(commonList);
-		result.addAll(commonSet);
-		if (result == null || result.isEmpty())
-			return null;
-		return result;
-	}
 
 	@Override
 	public Map<Map<String, String>, Set<String>> getGroupNameAndLabelIdAndLabelByGroupId(CommonReq req) throws Exception {
@@ -59,38 +44,6 @@ public class CommonServiceImpl implements CommonService {
 		result.put(mapInMap, labelSet);
 		
 		return result;
-	}
-
-	@Override
-	public CommonList createCommonList(CommonReq req){
-		CommonList toCreateCommon = new CommonList(req);
-		commonDao.save(toCreateCommon);
-		return toCreateCommon;
-	}
-
-	@Override
-	public void inactiveCommonList(CommonReq req) throws Exception {
-		Optional<CommonList> commonOp = commonDao.findById(req.getId());
-		if (!commonOp.isPresent())
-			throw new Exception("To set status of Common is null");
-		CommonList commonStatus = commonOp.get();
-		commonStatus.setStatus(req.isStatus());
-		commonDao.save(commonStatus);
-	}
-
-	@Override
-	public void updateCommonList(CommonReq req) throws Exception {
-		Optional<CommonList> commonOp = commonDao.findById(req.getId());
-		if (!commonOp.isPresent())
-			throw new Exception("To update Common is null");
-		CommonList toUpdateCommon = commonOp.get();
-		toUpdateCommon.setGroupId(req.getGroupId());
-		toUpdateCommon.setGroupName(req.getGroupName());
-		toUpdateCommon.setLabelId(req.getLabelId());
-		toUpdateCommon.setLabel(req.getLabel());
-		toUpdateCommon.setModifier(req.getModifier());
-		toUpdateCommon.setModifyDate(LocalDateTime.now());
-		commonDao.save(toUpdateCommon);
 	}
 
 }
